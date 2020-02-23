@@ -8,12 +8,12 @@ const keys = require('./config/keys');
 const app = express();
 
 //open connection to mongo
-mongoose.connect(keys.mongoURI);
+//mongoose.connect(keys.mongoURI);
+require('./config/dbConfig');
 
-//default route handler
-app.get('/', (req, resp) => { 
-    resp.send({ Hi: 'Hello World' });
-});
+//initiate route handlers
+require('./routes/initiateRoutes')(app);
+
 
 const PORT = process.env.PORT || 4000;
 //Open port
