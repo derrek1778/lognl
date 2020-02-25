@@ -1,3 +1,5 @@
 node_modules
 logAnalyzer.code-workspace
 keys.js
+../.DS_Store
+.DS_Store
