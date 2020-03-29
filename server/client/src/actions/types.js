@@ -1,0 +1,1 @@
+export const CHECK_USER_ACCOUNT="check_user_account";

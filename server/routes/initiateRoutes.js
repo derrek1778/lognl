@@ -6,4 +6,8 @@ module.exports = (app) => {
 
     //admin routes
     require('./adminRoutes')(app);
+
+    //user_account routes
+    require('./userValidateRoutes')(app);
+
 };
