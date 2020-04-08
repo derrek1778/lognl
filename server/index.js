@@ -10,9 +10,19 @@ const app = express();
 //open connection to mongo
 //mongoose.connect(keys.mongoURI);
 require('./config/dbConfig');
+//initiate mongoose models
+require('./models/Accounts');
 
 //initiate route handlers
-require('./routes/initiateRoutes')(app);
+//require('./routes/initiateRoutes')(app);
+
+//define route
+const accountRoute = require('./routes/accountRoutes');
+const adminRoute = require('./routes/adminRoutes');
+
+//add routes
+app.use('/api',accountRoute);
+app.use('/adm', adminRoute);
 
 
 const PORT = process.env.PORT || 4000;
