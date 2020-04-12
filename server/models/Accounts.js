@@ -6,7 +6,8 @@ const accountSchema = new Schema({
     accountName: String,
     accountDesc: String,
     accountKey: {type: Number},
-    isAdmin: Boolean
+    isAdmin: Boolean,
+    isActive: Boolean
 },{
     timestamps: true,
 });

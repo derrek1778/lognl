@@ -1,0 +1,20 @@
+cust-card  {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+  }
+  
+.cust-card .row {
+   text-align: center;
+    margin: 40px auto;
+    align-self: center;
+    border-radius: 15px;
+  }
+
+.cust-card .text-black {
+  color: black;
+}

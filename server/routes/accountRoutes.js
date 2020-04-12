@@ -17,21 +17,33 @@ const accountController = require('../controllers/account/AccountContoller');
     /**
      * @route addAccount
      */
-    router.route('/addAccount').post(async (req,res) => {
-        //consoleMessageWithObject('Account','query accountName value ', req.body.accountname);
+    router.route('/create_new_account').post(async (req,res) => {
         
-        const name = req.query.accountname;
-        const id = Number(req.query.accountid);
-        const description = req.query.accountdesc;
-        const key = id;
-        console.log('AccountRoute :: Name -> ', name);
-        console.log('AccountRoute :: id -> ' + id);
-        var existingAccount;
+        const dbTesting = true;
+
+        var name;
+        var id;
+        var description;
+        var key;
+
         try{
-             existingAccount = await Account.findOne({accountId: id});
+            name = req.body.accountName;
+            id = Number(req.body.accountId);
+            description= req.body.accountDesc;
+            key = req.body.accountKey;
         }catch(err){
-            consoleMessage('AccountRoute', err);
+            return res.status(400).json('Unable to complete this request');
         }
+        
+        var existingAccount;
+        if(!dbTesting){
+            try{
+                existingAccount = await Account.findOne({accountId: id});
+            }catch(err){
+                consoleMessage('AccountRoute', err);
+            }
+        }
+
 
         if(existingAccount){
             console.log('AccountRoute :: Message -> Account found ' + existingAccount.accountId);
@@ -43,21 +55,27 @@ const accountController = require('../controllers/account/AccountContoller');
             consoleMessage('AccountRoute', 'Account Not found Create new');
 
             var newAccount;
-            try{
-                 newAccount = new Account({
-                accountId: id, 
-                accountName: name,
-                accountDesc: description,
-                accountKey: key
-                });
+            if(!dbTesting){
+                try{
+                    newAccount = new Account({
+                    accountId: id, 
+                    accountName: name,
+                    accountDesc: description,
+                    accountKey: key
+                    });
+                
+                const account =  newAccount.save()
+                //.then(res.status(200).json(account))
+                }catch(err){
+                    consoleMessage('AccountRoute', err);
+                } 
+                consoleMessageWithObject('AccountRoute', 'Account created', newAccount);
+                return  res.json(newAccount);
             
-            const account =  newAccount.save()
-            //.then(res.status(200).json(account))
-            }catch(err){
-                consoleMessage('AccountRoute', err);
-            } 
-            consoleMessageWithObject('AccountRoute', 'Account created', newAccount);
-            return  res.json(newAccount);
+            }else{
+                res.status(200).json('Tested');
+            }
+
              //done(null, newAccount);
          }
             
@@ -68,9 +86,14 @@ const accountController = require('../controllers/account/AccountContoller');
      * @desc find one account using the account id 
      */
     router.route('/check_user_account').get( async (req, res) => {
-        console.log('UserValidationRoutes :: check_user_account');
-        const id = req.query.accountId;
-        console.log('AccountRoute :: id -> ' + id);
+        
+        var  id;
+        try{
+            id = req.query.accountId;
+        }catch(err){
+            return res.status(400).json('Unable to read account Id');
+        }
+       
         var account;
         try{ 
             account = await Account.findOne({accountId: id})

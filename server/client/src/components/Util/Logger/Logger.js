@@ -18,6 +18,42 @@ export const defaultLogger = (component, componentName, action, message) => {
     console.log(loggerString); 
 }
 
+export const consoleMessage = (component, message) => {
+    var loggerString = '[ ';
+    loggerString = loggerString.concat(
+                                        component,
+                                        ' :: ', 
+                                        ' , ',
+                                        ' Message :: ',
+                                        message,
+                                        ' at :: ', 
+                                        new Date().toLocaleString(), 
+                                        ' Message :: ',
+                                        message,
+                                        ' ]' 
+                                        );
+    console.log(loggerString); 
+}
+
+export const consoleMessageWithValue = (component, message, value) => {
+    var loggerString = '[ ';
+    loggerString = loggerString.concat(
+                                        component,
+                                        ' :: ', 
+                                        ' , ',
+                                        ' Message :: ',
+                                        message,
+                                        ' value ',
+                                        value,
+                                        ' at :: ', 
+                                        new Date().toLocaleString(), 
+                                        ' Message :: ',
+                                        message,
+                                        ' ]' 
+                                        );
+    console.log(loggerString, value); 
+}
+
 export const entryMarker = (component, componentName) => {
     var loggerString = '[ ';
     loggerString = loggerString.concat(

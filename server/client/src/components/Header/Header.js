@@ -2,9 +2,23 @@ import React, { Component } from "react";
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import { render } from "react-dom";
-import {defaultLogger, entryMarker, exitMarker} from '../Util/Logger/Logger';
+import {defaultLogger, consoleMessageWithValue, entryMarker, exitMarker} from '../Util/Logger/Logger';
 
 class Header extends Component{
+
+    constructor(props){
+        super(props);
+        const COMPONENT_NAME='HEADER';
+        consoleMessageWithValue(COMPONENT_NAME, 'Window locaiton ', window.location.pathname);
+        consoleMessageWithValue(COMPONENT_NAME, 'Constructor props ',props );
+    }
+
+    state={
+        accountId:'',
+        accountName:'',
+        accountKey:'',
+        isAdmin:false
+    }
 
     renderContentHandler(){
         entryMarker('Header', 'renderContentHandler');
@@ -12,30 +26,8 @@ class Header extends Component{
         exitMarker('Header', 'renderContentHandler');
     };
 
-    rerouteHandler = () =>{
+    rerouteHandler(){
         entryMarker('Header', 'rerouteHandler');
-
-        switch(this.props.user){
-
-            case null:
-                return(
-                    <li>
-                        Not Sure
-                    </li>
-                );
-            case false:
-                return (
-                    <li>
-                        Login
-                    </li>
-                );
-            default:
-                return (
-                    <li>
-                        Logout
-                    </li>
-                )
-        };
 
         exitMarker('Header', 'rerouteHandler');
     };
@@ -45,16 +37,25 @@ class Header extends Component{
             <div>
                 <nav>
                     <div class="nav-wrapper">
-                    <Link
-                        to={this.rerouteHandler}
-                        className="brand-logo left"
-                    >
+                    <Link to="/" className="brand-logo left">
                         LogNl
                     </Link>
                     
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        {this.renderContentHandler()}
+                    <ul className="right hide-on-med-and-down">
+                        <li id="nav-mobile">
+                            {this.renderContentHandler()}
+                        </li>
+
+                       <li id="nav-mobile"><Link to="/create" className="right hide-on-med-and-down">Create Exercise</Link>
+                       </li>
+                       <li id="nav-mobile"><Link to="/edit" className="right hide-on-med-and-down">Edit Exercise</Link>
+                       </li>
+                       <li id="nav-mobile"><Link to="/addaccount" className="right hide-on-med-and-down">Add Account</Link>
+                       </li>
                     </ul>
+                    {/* <Link to="/create" className="right hide-on-med-and-down">Create Exercise</Link>
+                    <Link to="/edit" className="right hide-on-med-and-down">Edit Exercise</Link> */}
+
                     </div>
                 </nav>
             </div>

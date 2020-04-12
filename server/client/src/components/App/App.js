@@ -7,45 +7,32 @@ import './App.css';
 
 //import component
 import Header from '../Header/Header';
-
+import Landing from '../Landing/Landing';
+import Dashboard from '../Dashboard/Dashboard';
+import CreateExercise from '../MERN/CreateExercise';
+import EditExercise from '../MERN/EditExercise';
+import AddAccount from '../AgentDashboard/AddAccount';
 //function App() {
 class App extends Component{
  
   render(){
     return (
-        <div className="container">
+        <div>
           <BrowserRouter>
-            <div>
+            <div className="container">
               <Route path="/" component={Header} />
-              {/*<Route exact path="/" component={Landing}/>
-              <Route exact path="/surveys" component={Dashboard}/>
-    <Route exact path="/surveys/new" component={SurveyNew }/>*/}
+              <Route exact path="/" component={Landing}/>
+              <Route exact path="/dashboard" component={Dashboard}/>
+              <Route exact path="/create" component={CreateExercise}/>
+              <Route exact path="/edit" component={EditExercise}/>
+              <Route exact path="/addaccount" component={AddAccount}/>
               </div>
           </BrowserRouter>
          
-         
-         
-         
-         
-         
-         <header className="App-header">
-            
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
         </div>
 
       );// close return
     }// close render
 };// close component
 
-export default App;
+export default connect(null, actions)(App);
