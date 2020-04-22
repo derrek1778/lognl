@@ -3,10 +3,10 @@
  */
 
  import {combineReducers} from 'redux';
- import authReducer from './authReducer';
- import adminReducer from './adminReducer';
+ import authenticationReducer from './authenticationReducer';
+ import adminDashboardReducer from './adminDashboardReducer';
 
  export default combineReducers({
-     auth: authReducer,
-     admin: adminReducer
+     authenticationReducer: authenticationReducer,
+     adminDashboardReducer: adminDashboardReducer
  });

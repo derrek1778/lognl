@@ -8,4 +8,8 @@ cust-card  {
     width: 100%;
     
   }
-  
+
+
+.cust-card .row {
+  margin:40px   auto;
+}

@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {consoleMessage, consoleMessageWithValue} from '../Util/Logger/Logger';
+import {consoleMessage, consoleMessageWithValue} from '../../Util/Logger/Logger';
 
 import {connect} from 'react-redux';
-import * as actions  from '../../actions';
+import * as actions  from '../../../actions';
 
 //css and materialize
 import { toast, ToastContainer  } from 'react-toastify';
+import 'materialize-css/dist/css/materialize.min.css';
 import './AddAccount.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -47,7 +48,8 @@ class AddAccount extends Component{
             accountName:'',
             accountDesc: '',
             accountKey: '',
-            isActive: false
+            isActive: false,
+            showPreloader: false
         });
         
     }
@@ -93,6 +95,9 @@ class AddAccount extends Component{
         e.preventDefault();
         alert('Called')
         consoleMessage(this.COMPONENT_NAME,'onSubmit');
+        this.setState({
+            showPreloader: true
+        })
         const account = {
             accountId: this.state.accountId,
             accountName: this.state.accountName,
@@ -104,8 +109,11 @@ class AddAccount extends Component{
 
         consoleMessageWithValue(this.COMPONENT_NAME, ' Account Value ', account);
         
+        
         const result = await this.props.createNewAccount(account);
-        if(result.status = 200){
+        
+
+        if(result.status === 200){
             console.log('Successfully added value');
         
             toast.success('Account Added Successfully', {position:"top-center"});
@@ -114,14 +122,16 @@ class AddAccount extends Component{
 
             toast.error('Something went wrong. Try again');
         }
-
+        this.setState({showPreloader: true});
         this.resetFields();
 
     }
 
     render(){
+
         return(
             <div>
+                
                 <div className="cust-card">
                     <div className="row">
                     <div class="card hoverable center-align light-yellow col s6 offset-m3">
@@ -202,6 +212,7 @@ class AddAccount extends Component{
                     </div>{/**Card Div closing */}
                     </div>
                 </div>
+                
                 <ToastContainer/>
             </div>    
         )

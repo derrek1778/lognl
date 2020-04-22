@@ -9,9 +9,8 @@ import './App.css';
 import Header from '../Header/Header';
 import Landing from '../Landing/Landing';
 import Dashboard from '../Dashboard/Dashboard';
-import CreateExercise from '../MERN/CreateExercise';
-import EditExercise from '../MERN/EditExercise';
-import AddAccount from '../AgentDashboard/AddAccount';
+import AddAccount from '../AgentDashboard/ManageAccount/AddAccount';
+import AdminDashboard from '../AgentDashboard/AdminDashboard';
 //function App() {
 class App extends Component{
  
@@ -23,9 +22,8 @@ class App extends Component{
               <Route path="/" component={Header} />
               <Route exact path="/" component={Landing}/>
               <Route exact path="/dashboard" component={Dashboard}/>
-              <Route exact path="/create" component={CreateExercise}/>
-              <Route exact path="/edit" component={EditExercise}/>
               <Route exact path="/addaccount" component={AddAccount}/>
+              <Route exact path="/admindashboard" component={AdminDashboard}/>
               </div>
           </BrowserRouter>
          

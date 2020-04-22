@@ -1,8 +1,15 @@
 
+const loggerEnabled = true;
 
+export const consoleSimpleMessage = (message,value) => {
+    if(loggerEnabled) {
+        console.log(message, value)
+    }  ;
+};
 
 export const defaultLogger = (component, componentName, action, message) => {
     var loggerString = '[ ';
+
     loggerString = loggerString.concat(
                                         component,
                                         ' :: ',
@@ -15,7 +22,10 @@ export const defaultLogger = (component, componentName, action, message) => {
                                         message,
                                         ' ]' 
                                         );
-    console.log(loggerString); 
+                            
+    if (loggerEnabled){
+        console.log(loggerString) 
+    };
 }
 
 export const consoleMessage = (component, message) => {
@@ -32,7 +42,9 @@ export const consoleMessage = (component, message) => {
                                         message,
                                         ' ]' 
                                         );
-    console.log(loggerString); 
+                                        if(loggerEnabled) {
+                                            console.log(loggerString)
+                                        }
 }
 
 export const consoleMessageWithValue = (component, message, value) => {
@@ -51,7 +63,9 @@ export const consoleMessageWithValue = (component, message, value) => {
                                         message,
                                         ' ]' 
                                         );
-    console.log(loggerString, value); 
+if(loggerEnabled) {
+    console.log(loggerString
+, value)};
 }
 
 export const entryMarker = (component, componentName) => {
@@ -66,7 +80,9 @@ export const entryMarker = (component, componentName) => {
                                         new Date().toLocaleString(), 
                                         ' ]' 
                                         );
-    console.log(loggerString); 
+    if(loggerEnabled) {
+     console.log(loggerString)
+    }
 }
 
 export const exitMarker = (component, componentName) => {
@@ -81,5 +97,7 @@ export const exitMarker = (component, componentName) => {
                                         new Date().toLocaleString(), 
                                         ' ]' 
                                         );
-    console.log(loggerString); 
+                                        if(loggerEnabled) {
+                                            console.log(loggerString)
+                                        }
 }
