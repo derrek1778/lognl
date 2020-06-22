@@ -19,9 +19,11 @@ export const checkUserAccount = (params) => async (dispatch)=> {
 }
 
 
-export const clearOut = () => (
-    {
-    type: accountActions.CLEAR_OUT,
+export const  clearOut =  () =>{
+    console.log('[AccounActions.js] clear out called ');
+   const res =   {type: accountActions.CLEAR_OUT,
     account:{isAdmin:false},
-})
+    }
+    return res
+}
 

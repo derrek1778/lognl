@@ -1,5 +1,5 @@
 
-const loggerEnabled = true;
+const loggerEnabled = false;
 
 export const consoleSimpleMessage = (message,value) => {
     if(loggerEnabled) {

@@ -200,7 +200,7 @@ class AddAccount extends Component{
                                 </div> {/* Account Key Row*/}
                                 
                                 <div class="row"> {/* Submit button Row*/}
-                                    <div class="input-field col ">
+                                    <div class="input-field col s3 ">
                                     <button class="btn waves-effect col  waves-light" type="submit" name="action"
                                     >Submit
                                     </button>    

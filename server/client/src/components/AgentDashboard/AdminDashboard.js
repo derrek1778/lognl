@@ -4,7 +4,8 @@ import { Link }  from 'react-router-dom';
 
 /**
  * 
- * 
+ * TODO add comments
+ *  
  */
 class AdminDashboard extends Component{
 
@@ -19,10 +20,6 @@ class AdminDashboard extends Component{
 
         
     }
-
-
-
-
 
     onClick(e){
 
@@ -43,7 +40,7 @@ class AdminDashboard extends Component{
                             I am convenient because I require little markup to use effectively.</p>
                             </div>
                             <div className="card-action">
-                            <a href={this.onClick}>This is a link</a>
+                         {/*    <a href={this.onClick}>This is a link</a> */}
                             <Link to="/addaccount">Add New Account</Link>
                             
                             </div>
@@ -57,7 +54,7 @@ class AdminDashboard extends Component{
                             I am convenient because I require little markup to use effectively.</p>
                             </div>
                             <div className="card-action">
-                            <a href={this.onClick}>This is a link</a>
+                            {/* <a href={this.onClick}>This is a link</a> */}
                             <a  href={this.onClick} onClick={this.onClick}>This is a link</a>
                             
                             </div>
